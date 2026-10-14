@@ -21,11 +21,16 @@ Facewall 是一个 **本地优先、AI-native 的 macOS 思考墙**：想法刚�
 **要求**：macOS 13 或更新，Apple Silicon（M 系列）。目前只提供简体中文界面，AI 输出也是中文。
 
 1. 从 [Releases](https://github.com/redbson/facewall-releases/releases) 下载最新的 `Facewall-<版本>.dmg`，打开后把 **Facewall.app** 拖进「应用程序」。
-2. 安装包是 **ad-hoc 签名、未公证** 的，第一次打开前需要去掉隔离标记（只需一次）：
+2. 安装包是 **ad-hoc 签名、未公证** 的（尚未加入 Apple 开发者计划），第一次打开会被 macOS 拦下。两种办法任选其一，只需一次：
+   - 终端里执行：
 
-   ```bash
-   xattr -dr com.apple.quarantine /Applications/Facewall.app
-   ```
+     ```bash
+     xattr -dr com.apple.quarantine /Applications/Facewall.app
+     ```
+
+   - 或者双击 Facewall 被拦下后，打开 **系统设置 › 隐私与安全性**，拉到底部点 **「仍要打开」**，再确认一次。（macOS 15 起右键「打开」已不再有效。）
+
+   正式签名与公证在路线图上；完成后这一步会消失。
 
 3. 打开 Facewall。引擎约 2 秒就绪，数据保存在 `~/Library/Application Support/Facewall/Data`。
 4. 按 **⌘,** 连接 AI：
