@@ -19,7 +19,7 @@ Facewall 是一个 **本地优先、AI-native 的 macOS 思考墙**：想法刚�
 
 ## 安装
 
-**要求**：macOS 13 或更新，Apple Silicon（M 系列）。目前只提供简体中文界面，AI 输出也是中文。
+**要求**：macOS 13 或更新，Apple Silicon（M 系列）。界面和 AI 输出跟随系统语言（简体中文 / English），也可在设置里固定；内置嵌入模型以中文为主，英文线索的召回偏弱。
 
 1. 从 [Releases](https://github.com/redbson/facewall-releases/releases) 下载最新的 `Facewall-<版本>.dmg`，打开后把 **Facewall.app** 拖进「应用程序」。
 2. 安装包是 **ad-hoc 签名、未公证** 的（尚未加入 Apple 开发者计划），第一次打开会被 macOS 拦下。两种办法任选其一，只需一次：

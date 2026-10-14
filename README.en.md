@@ -21,7 +21,7 @@ This repository holds only the **changelog, status notes and installers**; the s
 ## Install
 
 **Requirements**: macOS 13 or later, Apple Silicon. The interface follows your system language (English or
-Simplified Chinese; selectable in Settings from 0.3.2). The bundled embedding model is Chinese-first; recall over
+Simplified Chinese; selectable in Settings). The bundled embedding model is Chinese-first; recall over
 English traces works but is weaker.
 
 1. Download the latest `Facewall-<version>.dmg` from [Releases](https://github.com/redbson/facewall-releases/releases)
