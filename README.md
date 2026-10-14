@@ -13,6 +13,7 @@ Facewall 是一个 **本地优先、AI-native 的 macOS 思考墙**：想法刚�
 - 📦 **下载**：[Releases](https://github.com/redbson/facewall-releases/releases)
 - 📝 **更新日志**：[CHANGELOG.md](CHANGELOG.md)
 - 📍 **当前状态与路线图**：[docs/STATUS.md](docs/STATUS.md)
+- English: [README.en.md](README.en.md)
 
 ---
 
