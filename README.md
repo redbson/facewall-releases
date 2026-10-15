@@ -1,14 +1,17 @@
 # Facewall
 
-> Stitch scattered thoughts into a thinking wall you can act on.
+English | [简体中文](README.zh-CN.md)
 
-Facewall is a **local-first, AI-native thinking wall for macOS**. Drop a thought the moment it appears; an AI in the
+[![release](https://img.shields.io/github/v/release/redbson/facewall-releases?label=release&color=e8743b)](https://github.com/redbson/facewall-releases/releases/latest) [![platform](https://img.shields.io/badge/platform-macOS%2013%2B%20%C2%B7%20Apple%20Silicon-555)](#install)
+
+Facewall is a local-first, AI-native **thinking wall for macOS**. Drop a thought the moment it appears; an AI in the
 background links it to what you thought before, stitches it into growing **threads**, notices when you **change your
-mind**, and **recalls your past self** when you come back to a question.
+mind**, and **recalls your past self** when you come back to a question. It stitches through **Claude Code**,
+**Codex** or **Gemini CLI** on your existing subscription, or any API you configure — there is no server, and nothing
+from your wall leaves your Mac except what the model needs. The interface is in English and Chinese; it follows your Mac's language and can be
+switched in Settings.
 
-This repository holds the installers and the changelog; the source is private.
-
-**[Download](https://github.com/redbson/facewall-releases/releases)** · [Changelog](CHANGELOG.en.md) · [中文](README.zh-CN.md)
+⬇️ **Download:** [macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.3/Facewall-0.3.3.dmg) · [All releases](https://github.com/redbson/facewall-releases/releases) · [Changelog](CHANGELOG.en.md)
 
 ## Install
 
@@ -23,10 +26,10 @@ Requires macOS 13+ on Apple Silicon.
 
    or click **Open Anyway** in **System Settings › Privacy & Security** after the block.
 3. Open Facewall and press **⌘,** to connect a model. With **Claude Code** or **Codex** installed it offers one-click
-   setup on your existing subscription (no API key); Anthropic, OpenAI, Azure and OpenAI-compatible endpoints
-   (DeepSeek, Kimi, GLM, Qwen, Ollama…) work too.
+   setup on your existing subscription (no API key); Gemini CLI (preview), Anthropic, OpenAI, Azure and
+   OpenAI-compatible endpoints (DeepSeek, Kimi, GLM, Qwen, Ollama…) work too.
 
-The interface follows your system language (English or Simplified Chinese) and can be fixed in Settings.
+**Updating:** from 0.3.3 on, Facewall updates itself — **Settings › Updates** (or **Facewall › Check for Updates…**).
 
 ## How to use it
 
@@ -60,6 +63,7 @@ Want a feel for it first? Run **Load example traces** from the ⌘K command pale
 - Everything stays on your Mac in one SQLite file; there is no server. **⇧⌘E** exports full JSON, **⌘O** imports.
 - Daily backups (kept 7 days); restore any of them in Settings › Data & Engine.
 - Only the model you configure sees anything: the current trace, its few most related past traces and the thread judgments involved.
+- Update checks only ask GitHub for the latest release; they carry nothing from your wall (can be turned off).
 - Deleted or hidden traces never reappear and are never sent to the model again; "let it fade" keeps the text but stops recalling it.
 
 ## Feedback

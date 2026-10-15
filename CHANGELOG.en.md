@@ -2,6 +2,29 @@
 
 Versions follow `major.minor.patch`; `x.y.z-dev.date` is a **Facewall Dev** preview that installs next to the release build (its own bundle id, data folder, port and hotkeys).
 
+## 0.3.3 · 2026-10-15
+
+### In-app updates
+- **Settings › Updates**: check for a new version, download it, verify its SHA-256, bundle id and signature, then **Restart & update** in one click; a downloaded update you don't restart for installs the next time you quit Facewall. Facewall checks at launch and every 12 hours (can be turned off) and can download updates in the background. Menu: **Facewall › Check for Updates…**.
+- **Version log**: Settings › Updates lists what changed in every version, in English or Chinese to match the interface.
+- The sidebar no longer shows the version number; "Update" appears there when a new version is out.
+- **Coming from 0.3.2 or earlier, install this version by hand once**; every later version installs from inside the app, and in-app updates don't need the quarantine step.
+
+### Gemini CLI (preview)
+- Settings › AI model now offers **Gemini CLI (local)**: with Google's `gemini` command installed and signed in, Facewall stitches and recalls through your own Google account or API key — like Claude Code and Codex, no key to enter in Facewall. Pick Auto / Pro / Flash / Flash-Lite, or pin a specific model.
+- It runs read-only, without extensions or MCP servers, and the session log Gemini keeps on your Mac is deleted after every run.
+- Marked as a preview: not yet fully tested against a real Gemini model — please open an issue if something goes wrong.
+
+### Cognitive kernel (World 0)
+- The bundled World 0 is now 0.5.1.
+- Conflict hints in recall no longer treat the topic two traces share as a conflict; only the two opposing stances are flagged.
+- When several traces are stitched back to back they now reach World 0 in order; before, a real change of mind could be missed.
+- On first launch the cognitive world is rebuilt from your history under the new rules; the old one is kept as a backup.
+
+### Other
+- The settings button is now a gear (the old icon looked like a brightness control); "Fix concept" in Memory is now a pencil.
+- No database schema change; upgrading from 0.3.x needs no migration.
+
 ## 0.3.2 · 2026-10-14
 
 ### Chinese and English

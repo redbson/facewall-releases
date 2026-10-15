@@ -1,13 +1,15 @@
 # Facewall
 
-> 把碎片化思绪缝成一张可操作的私人思考墙。
+[English](README.md) | 简体中文
 
-Facewall 是一个 **本地优先、AI-native 的 macOS 思考墙**：想法刚出现时随手丢进去，后台的 AI 把它和你过去的想法连起来，
-缝进持续生长的 **思考线**，发现你 **改变了主意**，并在你重新思考一个问题时 **召回过去的自己**。
+[![release](https://img.shields.io/github/v/release/redbson/facewall-releases?label=release&color=e8743b)](https://github.com/redbson/facewall-releases/releases/latest) [![platform](https://img.shields.io/badge/platform-macOS%2013%2B%20%C2%B7%20Apple%20Silicon-555)](#安装)
 
-这个仓库只放安装包和更新日志；源码在私有仓库。
+Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**：想法刚出现时随手丢进去，后台的 AI 把它和你过去的想法连起来，
+缝进持续生长的 **思考线**，发现你 **改变了主意**，并在你重新思考一个问题时 **召回过去的自己**。它可以用你已有订阅的
+**Claude Code**、**Codex** 或 **Gemini CLI** 缝合，也可以接你配置的任何 API——没有服务器，墙上的内容除了模型需要的部分，
+不会离开你的 Mac。界面有中文和英文，默认跟随 Mac 的系统语言，可在设置里切换。
 
-**[下载](https://github.com/redbson/facewall-releases/releases)** · [更新日志](CHANGELOG.md) · [English](README.md)
+⬇️ **下载：** [macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.3/Facewall-0.3.3.dmg) · [全部版本](https://github.com/redbson/facewall-releases/releases) · [更新日志](CHANGELOG.md)
 
 ## 安装
 
@@ -22,9 +24,9 @@ Facewall 是一个 **本地优先、AI-native 的 macOS 思考墙**：想法刚�
 
    或者被拦下后在 **系统设置 › 隐私与安全性** 里点 **「仍要打开」**。
 3. 打开 Facewall，按 **⌘,** 连接模型。本机装了 **Claude Code** 或 **Codex** 时可以一键启用，走你已有的订阅，不需要
-   API key；也支持 Anthropic、OpenAI、Azure 和 OpenAI 兼容端点（DeepSeek、Kimi、GLM、Qwen、Ollama 等）。
+   API key；也支持 Gemini CLI（预览）、Anthropic、OpenAI、Azure 和 OpenAI 兼容端点（DeepSeek、Kimi、GLM、Qwen、Ollama 等）。
 
-界面跟随系统语言（简体中文 / English），也可以在设置里固定。
+**更新：** 从 0.3.3 起，Facewall 可以在应用内升级——**设置 › 更新**（或菜单 **Facewall › 检查更新…**）。
 
 ## 怎么用
 
@@ -58,6 +60,7 @@ Facewall 是一个 **本地优先、AI-native 的 macOS 思考墙**：想法刚�
 - 所有数据都在本机的一个 SQLite 文件里，没有服务器。**⇧⌘E** 导出完整 JSON，**⌘O** 导入。
 - 每天自动备份（保留 7 天），在 设置 › 数据与引擎 里可以恢复到任意一份。
 - 只有你配置的模型会看到内容：当前线索、与它最相关的几条过去的线索，以及涉及的思考线判断。
+- 检查更新只向 GitHub 询问最新版本号，不带墙上的任何内容（可以关掉）。
 - 删除或隐藏的线索不会再出现，也不再发给模型；「让它淡去」保留原文，但不再召回。
 
 ## 反馈
