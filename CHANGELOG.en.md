@@ -2,6 +2,20 @@
 
 Versions follow `major.minor.patch`; `x.y.z-dev.date` is a **Facewall Dev** preview that installs next to the release build (its own bundle id, data folder, port and hotkeys).
 
+## 0.3.4 · 2026-10-15
+
+### Recall can look on the web
+- **Settings › AI model › Web search** (off by default): with it on, the recall panel gains a *Look on the web too* box; for a recall you tick, the model searches the internet itself once before writing (Claude Code, Codex or the Anthropic API — no search service to configure) and lists the sources it used under *From the web*, with links and a line each, kept strictly apart from your own past. Only the question is sent, never trace text; stitching and the Daily Stitch never go online.
+
+### The cognitive kernel takes part in the core loop
+- When stitching, the model now sees the kernel's projection of the related concepts and the opposing stances it knows, and uses them to pick concepts and threads and to judge reversals.
+- How fast a trace fades listens to the kernel's maturity for its concepts: a trace whose concepts are active or core in the world fades on the "connected" curve (a one-month half-life instead of one week).
+- Two new Daily Stitch cards: **tension** (two of your thoughts that pull against each other — which side today?) and **dormant concept** (one that mattered and went quiet).
+- World 0 and the built-in graph kernel both serve all three; when World 0 is absent or fails, the built-in kernel answers.
+
+### Other
+- With several copies of a local CLI installed (an old `/usr/local/bin/claude` next to a current `~/.local/bin/claude`), the engine now picks the newest, instead of whichever PATH lists first.
+
 ## 0.3.3 · 2026-10-15
 
 ### In-app updates

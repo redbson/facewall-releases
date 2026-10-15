@@ -6,7 +6,7 @@ English | [简体中文](README.zh-CN.md)
 
 Facewall is a local-first, AI-native **thinking wall for macOS**. Drop a thought the moment it appears, from any app; an AI in the background links it to what you thought before, stitches it into **threads** that keep growing, notices when you **change your mind**, lets judgments that keep recurring surface as **patterns**, and **recalls your past self** when you come back to a question. It stitches through the **Claude Code**, **Codex** or **Gemini CLI** you are already signed in to, or any API you configure. There is no server and no account: your thoughts live in one database on your Mac, and only the model you chose ever sees them. The interface is in English and Chinese; it follows your Mac's language and can be switched in Settings.
 
-**⬇ Download: [macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.3/Facewall-0.3.3.dmg)** · [All releases](https://github.com/redbson/facewall-releases/releases) · [Changelog](CHANGELOG.en.md)
+**⬇ Download: [macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.4/Facewall-0.3.4.dmg)** · [All releases](https://github.com/redbson/facewall-releases/releases) · [Changelog](CHANGELOG.en.md)
 
 This repository holds the installers and the changelog; the source code is private.
 
@@ -36,7 +36,7 @@ The bundled embedding model is Chinese-first; recall over English traces works b
 
 ## Installation
 
-1. Download [Facewall-0.3.3.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.3/Facewall-0.3.3.dmg) (or pick a version on [Releases](https://github.com/redbson/facewall-releases/releases)), open it, and drag `Facewall.app` into Applications.
+1. Download [Facewall-0.3.4.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.4/Facewall-0.3.4.dmg) (or pick a version on [Releases](https://github.com/redbson/facewall-releases/releases)), open it, and drag `Facewall.app` into Applications.
 2. First launch: Facewall is not notarized by Apple, so macOS says it cannot verify the developer. Open System Settings → Privacy & Security and click **Open Anyway** near the bottom, or run:
 
    ```bash
@@ -89,6 +89,8 @@ Every correction is a signal: whatever the AI infers, you have the final say.
 
 Press ⌘F (or `/` when you aren't typing), write what you want to keep thinking about, press Return. Ask the way you would ask someone who knows you: *What did I go back and forth on about moving to another city?* The result starts with how sure it is, then the most stable judgment right now, how the view changed over time (each step jumps to its trace), open questions, related threads, the recalled words themselves — dated, in your own words — and folded groups for nearest-but-unsure and faded traces. **Keep thinking from here** turns your reply into a new trace.
 
+**Looking on the web too** (off by default): turn on Settings › AI model › Web search, and a *Look on the web too* box appears under the question. Ticked, the model searches the internet itself before answering (Claude Code, Codex or the Anthropic API — no search service to set up) and lists what it used under *From the web*, kept apart from your own past: a web result never appears in your path of thought. Only your question is sent to the search, never your traces.
+
 ### The Daily Stitch
 
 When the Stitch page is idle, a card shows one older thought, thread or open question with a question. **Write a reply**, **Recall my past self**, **Another one**, or **Not today**. Examples and faded traces never appear in it.
@@ -134,6 +136,7 @@ When the Stitch page is idle, a card shows one older thought, thread or open que
 | Logs | `~/Library/Logs/Facewall/app.log` and `engine.log` (Help › Open logs) |
 
 - What reaches the model you configured, and nothing else: the trace being stitched, its few most related past traces, and the judgments of the threads involved; for recall, your question and the recalled traces. OpenAI and Azure requests ask the server not to store them.
+- Web search is off unless you turn it on, and then only a recall you ticked goes online: the model searches with your question, never with trace text. Stitching and the Daily Stitch never go online.
 - Everything else is local: search in the command palette, the embedding model, the layout, the usage counters, update checks (which only ask GitHub for the latest version number).
 - ⇧⌘E exports everything as JSON with the text verbatim; ⌘O imports it. Files Facewall writes are readable by you alone.
 - The quick capture panel, the Services menu and system notifications never show text by default; a notification is withdrawn when its trace is deleted.
@@ -149,6 +152,11 @@ When the Stitch page is idle, a card shows one older thought, thread or open que
 - **Something looks wrong after an upgrade**: Settings › Data & engine › backups lists the copy made right before it; restoring makes another backup first.
 
 ## Changelog
+
+### 0.3.4
+- Recall can look on the web (opt-in): the model searches by itself and lists its sources apart from your own past.
+- The cognitive kernel now takes part in stitching, forgetting and the Daily Stitch (tension and dormant-concept cards); World 0 and the built-in kernel both serve it.
+- Several copies of a local CLI: the newest wins.
 
 ### 0.3.3
 - In-app updates: check, download, verify and restart from Settings › Updates; a version log in both languages.

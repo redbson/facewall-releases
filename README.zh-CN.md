@@ -6,7 +6,7 @@
 
 Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚出现时就从任何 App 里随手丢进去；后台的 AI 把它和你过去的想法连起来，缝进持续生长的 **思考线**，发现你 **改变了主意**，让反复出现的判断浮现为 **长期模式**，并在你重新思考一个问题时 **召回过去的自己**。它用你本机已登录的 **Claude Code**、**Codex** 或 **Gemini CLI** 缝合，也可以接你配置的任何 API。没有服务器、不用注册账号：你的想法存在 Mac 上的一个数据库里，只有你选定的模型会看到它们。界面有中文和英文，默认跟随 Mac 的系统语言，可在设置里切换。
 
-**⬇ 下载：[macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.3/Facewall-0.3.3.dmg)** · [全部版本](https://github.com/redbson/facewall-releases/releases) · [更新日志](CHANGELOG.md)
+**⬇ 下载：[macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.4/Facewall-0.3.4.dmg)** · [全部版本](https://github.com/redbson/facewall-releases/releases) · [更新日志](CHANGELOG.md)
 
 这个仓库只放安装包和更新日志；源码是私有的。
 
@@ -36,7 +36,7 @@ Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚�
 
 ## 安装
 
-1. 下载 [Facewall-0.3.3.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.3/Facewall-0.3.3.dmg)（或在 [Releases](https://github.com/redbson/facewall-releases/releases) 选一个版本），打开后把 `Facewall.app` 拖进「应用程序」。
+1. 下载 [Facewall-0.3.4.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.4/Facewall-0.3.4.dmg)（或在 [Releases](https://github.com/redbson/facewall-releases/releases) 选一个版本），打开后把 `Facewall.app` 拖进「应用程序」。
 2. 首次打开：Facewall 没有经过 Apple 公证，macOS 会说无法验证开发者。打开 系统设置 → 隐私与安全性，拉到底部点 **「仍要打开」**，或者在终端执行：
 
    ```bash
@@ -89,6 +89,8 @@ Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚�
 
 按 ⌘F（不在输入时按 `/` 也行），写下你想继续思考的事，回车。像问一个了解你的人那样问：*关于要不要搬去另一个城市，我反复纠结过什么？* 结果先说有多大把握，然后是此刻最稳的判断、观点随时间的演化（每一步都能跳到对应线索）、未决的问题、相关思考线、召回的原话——带日期，全是你自己的话——以及折叠起来的「最接近但不确定」和「已淡去」两组。**从这里继续想** 把你的回应变成一条新线索。
 
+**顺便看看网上**（默认关）：打开 设置 › AI 模型 › 联网搜索，问题下面会出现「联网参考」勾选框。勾上后，模型会先自己上网搜一次再回答（Claude Code、Codex 或 Anthropic API，不用配置搜索服务），用到的来源列在「网上的参考」里，和你自己的过去分开：网上的内容永远不会出现在观点演化路径里。搜索只发送你的问题，不发送线索原文。
+
 ### 每日一针
 
 缝合页空闲时会出现一张卡片：一条旧想法、一条思考线或一个未决问题，配一个提问。**写下回应**、**召回过去的我**、**换一张**，或 **今天不看**。示例和已淡去的线索不会出现在里面。
@@ -134,6 +136,7 @@ Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚�
 | 日志 | `~/Library/Logs/Facewall/app.log` 和 `engine.log`（帮助 › 打开日志） |
 
 - 只有这些会发给你配置的模型：正在缝合的线索、与它最相关的几条过去线索、涉及的思考线判断；召回时是你的问题和召回到的线索。OpenAI 和 Azure 的请求会要求服务端不保存。
+- 联网搜索默认关闭；打开后也只有你勾选的那次召回会联网，模型用你的问题搜索，不用线索原文。缝合和每日一针从不联网。
 - 其余全在本地：命令面板的搜索、嵌入模型、布局、使用统计、更新检查（只向 GitHub 问最新版本号）。
 - ⇧⌘E 把全部数据导出为 JSON，原文逐字保留；⌘O 导入。Facewall 写的文件都只有你能读。
 - 快速捕捉浮窗、服务菜单和系统通知默认不显示原文；线索删除后，它的通知会被撤回。
@@ -149,6 +152,11 @@ Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚�
 - **升级后不对劲**：设置 › 数据与引擎 › 备份 里有升级前那一份；恢复前会再备份一次。
 
 ## 更新日志
+
+### 0.3.4
+- 召回可联网搜索（可选）：模型自己搜索，来源单独列出，和你自己的过去分开。
+- 认知内核参与缝合、遗忘和每日一针（新增张力卡、沉寂概念卡）；World 0 和内置内核都能完成。
+- 本机命令行工具有多个副本时选最新的。
 
 ### 0.3.3
 - 应用内更新：在 设置 › 更新 里检查、下载、校验、重启；中英双语的版本日志。
