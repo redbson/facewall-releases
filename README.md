@@ -1,68 +1,67 @@
-# Facewall · 版本记录与发布
+# Facewall
 
-> 把碎片化思绪缝成一张可操作的私人思考墙。
+> Stitch scattered thoughts into a thinking wall you can act on.
 
-Facewall 是一个 **本地优先、AI-native 的 macOS 思考墙**：想法刚出现时随手丢进去（**线索**），
-后台的认知 Agent 自动归类、连接、缝合成持续生长的 **思考线**，识别你 **观点的反转**，
-长期重复的判断浮现为 **模式**，再次思考时 **召回过去的自己**。
+Facewall is a **local-first, AI-native thinking wall for macOS**. Drop a thought the moment it appears; an AI in the
+background links it to what you thought before, stitches it into growing **threads**, notices when you **change your
+mind**, and **recalls your past self** when you come back to a question.
 
-核心循环：`线索 → 缝合 → 思考线 → 模式 → 召回`，外加每天一张的 **每日一针**。
+This repository holds the installers and the changelog; the source is private.
 
-这个仓库只放 **更新日志、现状说明和安装包**；源码在私有仓库里维护。
+**[Download](https://github.com/redbson/facewall-releases/releases)** · [Changelog](CHANGELOG.en.md) · [中文](README.zh-CN.md)
 
-- 📦 **下载**：[Releases](https://github.com/redbson/facewall-releases/releases)
-- 📝 **更新日志**：[CHANGELOG.md](CHANGELOG.md)
-- 📍 **当前状态与路线图**：[docs/STATUS.md](docs/STATUS.md)
-- English: [README.en.md](README.en.md)
+## Install
 
----
+Requires macOS 13+ on Apple Silicon.
 
-## 安装
+1. Download the latest `Facewall-<version>.dmg` from [Releases](https://github.com/redbson/facewall-releases/releases) and drag **Facewall.app** into Applications.
+2. The app is ad-hoc signed and not notarized, so macOS blocks the first launch. Once, either run
 
-**要求**：macOS 13 或更新，Apple Silicon（M 系列）。界面和 AI 输出跟随系统语言（简体中文 / English），也可在设置里固定；内置嵌入模型以中文为主，英文线索的召回偏弱。
+   ```bash
+   xattr -dr com.apple.quarantine /Applications/Facewall.app
+   ```
 
-1. 从 [Releases](https://github.com/redbson/facewall-releases/releases) 下载最新的 `Facewall-<版本>.dmg`，打开后把 **Facewall.app** 拖进「应用程序」。
-2. 安装包是 **ad-hoc 签名、未公证** 的（尚未加入 Apple 开发者计划），第一次打开会被 macOS 拦下。两种办法任选其一，只需一次：
-   - 终端里执行：
+   or click **Open Anyway** in **System Settings › Privacy & Security** after the block.
+3. Open Facewall and press **⌘,** to connect a model. With **Claude Code** or **Codex** installed it offers one-click
+   setup on your existing subscription (no API key); Anthropic, OpenAI, Azure and OpenAI-compatible endpoints
+   (DeepSeek, Kimi, GLM, Qwen, Ollama…) work too.
 
-     ```bash
-     xattr -dr com.apple.quarantine /Applications/Facewall.app
-     ```
+The interface follows your system language (English or Simplified Chinese) and can be fixed in Settings.
 
-   - 或者双击 Facewall 被拦下后，打开 **系统设置 › 隐私与安全性**，拉到底部点 **「仍要打开」**，再确认一次。（macOS 15 起右键「打开」已不再有效。）
+## How to use it
 
-   正式签名与公证在路线图上；完成后这一步会消失。
+1. **Drop thoughts as they come.** Press **⌥⇧Space** in any app, type, hit Return. One thought per trace; half-formed
+   is fine — don't organize, just write what you think, in your own words.
+2. **Let it stitch.** Each trace is stitched in the background: which **thread** it belongs to, which earlier traces it
+   connects to and why, and the thread's current judgment. Select a trace to see its stitch in the right-hand panel.
+3. **Correct it when it's wrong.** Move a trace to another thread, mark a link as wrong, rewrite a thread's judgment,
+   split or merge threads. Later stitches respect your corrections; your own judgment always wins.
+4. **Watch your mind change.** The **Wall** (⌘1) shows traces grouped by thread with reversals marked; **Threads** (⌘2)
+   shows how each judgment evolved and where you changed your mind.
+5. **Keep thinking with recall.** Press **⌘F** and ask a question: Facewall brings back what you thought before, quotes
+   your own words step by step, and says plainly when you never thought about it.
+6. **Come back every day.** The **Daily Stitch** brings back one older thought with a question. Over weeks, judgments
+   that keep recurring across threads surface in **Memory** (⌘3) as long-term patterns — reject any that aren't you.
 
-3. 打开 Facewall。引擎约 2 秒就绪，数据保存在 `~/Library/Application Support/Facewall/Data`。
-4. 按 **⌘,** 连接 AI：
-   - 本机装了 **Claude Code** 或 **Codex** 的话，设置页会直接推荐「一键启用」，走你已有的订阅，不需要 API key；
-   - 也可以填 Anthropic / OpenAI / Azure，或任何 OpenAI 兼容端点（DeepSeek、Kimi、GLM、Qwen、Ollama 等预设）。
-5. 在任何 App 里按 **⌥⇧Space**，写下一个想法，回车。
+Want a feel for it first? Run **Load example traces** from the ⌘K command palette on an empty wall; clear them in one click.
 
-App 自带独立的 Python 运行时和中文嵌入模型，除了调用你配置的模型外 **完全离线**；没有服务器，不上传任何数据。
+## Shortcuts and entry points
 
-## 日常入口
-
-| 入口 | 怎么用 |
+| | |
 |---|---|
-| 快速捕捉浮窗 | 任何 App 里 ⌥⇧Space（不抢焦点）；↩ 放下，⌥↩ 放下并继续，⌘↩ 放下并打开墙，⇥ 切到召回 |
-| 服务菜单 | 选中文字 → 右键 → 服务 → **存入 Facewall** |
-| 菜单栏图标 | 快速捕捉、继续思考、待缝合计数、最近线索 |
-| URL scheme | `facewall://capture?text=…`、`facewall://recall?q=…`、`facewall://trace/<id>` |
-| 终端 | `fw 一句想法`、`pbpaste \| fw`、`fw -r 问题`（脚本随源码提供） |
+| ⌥⇧Space | Quick capture from any app (⇥ switches to recall) |
+| ⌘K · ⌘F · ⌘? | Command palette · recall · in-app guide |
+| Services menu | Select text → right-click → Services → **Save to Facewall** |
+| Menu bar icon | Quick capture, recall, pending stitches, recent traces |
+| URL scheme | `facewall://capture?text=…` · `facewall://recall?q=…` |
 
-应用内 **⌘K** 命令面板、**⌘F** 召回、**⌘?** 使用帮助。
+## Data and privacy
 
-## 数据与隐私
+- Everything stays on your Mac in one SQLite file; there is no server. **⇧⌘E** exports full JSON, **⌘O** imports.
+- Daily backups (kept 7 days); restore any of them in Settings › Data & Engine.
+- Only the model you configure sees anything: the current trace, its few most related past traces and the thread judgments involved.
+- Deleted or hidden traces never reappear and are never sent to the model again; "let it fade" keeps the text but stops recalling it.
 
-- 所有数据在本机一个 SQLite 文件里；**⇧⌘E** 导出完整 JSON（原文逐字保留），**⌘O** 导入。
-- 每天自动备份（保留 7 天），升级、导入、恢复前也先备份；在 设置 › 数据与引擎 里可以直接恢复到任一份。
-- 删除 / 隐藏的线索不会再以任何形式出现（包括由它派生的判断、概念和模式），也不再发给模型。
-- 「让它淡去」：原文留在墙上，但不再被召回、推送或连接；随时唤醒。
-- 发给模型的内容只有：当前线索与它最相关的几条历史原文、涉及的思考线判断；系统通知默认不显示原文。
-- 本机使用统计只记录在数据目录里，不上传。
+## Feedback
 
-## 反馈
-
-问题和建议请在本仓库开 [Issue](https://github.com/redbson/facewall-releases/issues)。
-请不要在 Issue 里贴自己的线索原文——描述现象即可。
+Open an [issue](https://github.com/redbson/facewall-releases/issues) — describe what happened rather than pasting your own traces.
