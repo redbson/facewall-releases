@@ -8,7 +8,7 @@ Facewall is a local-first, AI-native **thinking wall for macOS**. Drop a thought
 
 **⬇ Download: [macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.4/Facewall-0.3.4.dmg)** · [All releases](https://github.com/redbson/facewall-releases/releases) · [Changelog](CHANGELOG.en.md)
 
-This repository holds the installers and the changelog; the source code is private.
+This repository holds the installers, the changelog and the documentation; the source code is private.
 
 ## Features
 
@@ -59,97 +59,13 @@ Want a feel for it first? Run **Load example traces** from the ⌘K command pale
 - If Facewall runs from the disk image, from macOS's quarantine location or from a folder you can't write to, it can't replace itself and points you to the releases page instead.
 - Coming from 0.3.2 or earlier, install 0.3.3 by hand once; every later version installs from inside the app.
 
-## Usage
+## Documentation
 
-### Dropping traces
-
-- **On the wall**: ⌘N or the composer at the bottom; ⌘↩ puts the text on the wall. One thought per trace, half-formed is fine. Up to 20,000 characters.
-- **Quick capture panel**, from any app with ⌥⇧Space (changeable under Settings › Shortcuts): ↩ puts it on the wall and closes; ⌥↩ keeps the panel open for the next one; ⌘↩ opens Facewall; ⇧↩ new line; ⇥ switches to recall; Esc closes. With a Pinyin or Zhuyin input method, Return picks a candidate and never submits by mistake.
-- **Elsewhere**: select text in any app → right-click → Services → **Save to Facewall** (bind a shortcut under System Settings › Keyboard › Keyboard Shortcuts › Services); the menu bar icon and the Dock icon's menu; `facewall://capture?text=…` to drop a trace silently, `facewall://quick` to open the panel, `facewall://recall?q=…` to recall.
-- A system notification tells you when a thought captured outside the window has been stitched; by default it carries no text.
-
-### Reading a stitch
-
-Select a trace and the inspector's **Stitch** page shows: the thread it was filed under, the reversal it found (if any), the past thoughts it was linked to with a reason for each, the thread's judgment after this trace, an emerging pattern if the model flagged one, the AI's full reasoning, and a **Next stitch** question you can answer in place or recall from. The status at the top right shows what the AI is doing (ready, stitching, not configured, paused and why); ⇧⌘S stitches everything pending.
-
-### When the AI gets it wrong
-
-| | |
-|---|---|
-| **This link is off** | Downweights and deactivates a link; it disappears from the wall and from recall. |
-| **Not a reversal** | The earlier judgment the AI retired comes back. |
-| **Move…** | Puts the trace on the right thread or starts a new one; later stitches won't move it back. **Split into a new thread** takes a different matter out of a thread; merges ask first and can be undone for 10 minutes. |
-| **Edit** (Threads) | Rewrite the title or the judgment. Your judgment is marked and never rewritten; the AI's new wording appears as a suggestion to adopt or ignore. |
-| **Not my pattern** (Memory) | Rejects a long-term pattern; it can be restored later. |
-| **Rename a concept** (Memory) | Renaming to an existing name merges the two. |
-
-Every correction is a signal: whatever the AI infers, you have the final say.
-
-### Recall
-
-Press ⌘F (or `/` when you aren't typing), write what you want to keep thinking about, press Return. Ask the way you would ask someone who knows you: *What did I go back and forth on about moving to another city?* The result starts with how sure it is, then the most stable judgment right now, how the view changed over time (each step jumps to its trace), open questions, related threads, the recalled words themselves — dated, in your own words — and folded groups for nearest-but-unsure and faded traces. **Keep thinking from here** turns your reply into a new trace.
-
-**Looking on the web too** (off by default): turn on Settings › AI model › Web search, and a *Look on the web too* box appears under the question. Ticked, the model searches the internet itself before answering (Claude Code, Codex or the Anthropic API — no search service to set up) and lists what it used under *From the web*, kept apart from your own past: a web result never appears in your path of thought. Only your question is sent to the search, never your traces.
-
-### The Daily Stitch
-
-When the Stitch page is idle, a card shows one older thought, thread or open question with a question. **Write a reply**, **Recall my past self**, **Another one**, or **Not today**. Examples and faded traces never appear in it.
-
-### Threads and Memory
-
-- **Threads** (⌘2): each thread's traces, its current judgment and how it changed, with reversals and "changed my mind" marked; edit, split, merge, or export one as Markdown (⌘E).
-- **Memory** (⌘3): long-term patterns with their evidence (watching until promoted), concepts by maturity, and the faded and hidden traces with **Wake** and **Restore**.
-- On the wall: ⌘⌫ deletes the selected trace, or hide it, or let it fade. A deleted or hidden trace never reappears anywhere — including the judgments, concepts and patterns derived from it — and is never sent to the model again.
-
-### Settings (⌘,)
-
-- **AI model**: provider, model, connection test, and the one-click cards for local CLIs. Stitching can use a cheaper model than recall.
-- **Appearance & general**: light / dark / follow system with four dark styles; language (English, 简体中文, follow system); launch at login; menu bar and Dock icons; notifications and whether they carry text.
-- **Shortcuts**: the two global hotkeys (quick capture, show / hide Facewall) and a reference of everything else.
-- **Data & engine**: data folder (show, change), export and import, backups and in-app restore, usage counters, the cognitive kernel, logs, restart engine.
-- **Updates**: current version, check / download / install, the two automatic switches, and the version log.
-
-### Shortcuts
-
-| | |
-|---|---|
-| ⌥⇧Space · ⌥⇧W | Quick capture · show / hide Facewall (global, changeable) |
-| ⌘N · ⌘↩ | New trace · put it on the wall |
-| ⌘F · `/` | Recall |
-| ⌘K | Command palette: commands, threads, and the text of your traces (searched locally) |
-| ⌘1 · ⌘2 · ⌘3 | Wall · Threads · Memory |
-| ⌥⌘I · ⌃⌘S | Inspector · sidebar |
-| ⌘L · ⇧⌘L · ⌘0 | Re-layout · collapse threads · fit the wall |
-| ⇧⌘S | Stitch all pending traces |
-| ⌘⌫ | Delete the selected trace |
-| ⇧⌘E · ⌘E · ⌘O | Export everything · export this thread · import |
-| ⌘, · ⌘/ · ⌘? | Settings · shortcuts · user guide |
-
-## Data and privacy
-
-| What | Where |
-|---|---|
-| Your wall | `~/Library/Application Support/Facewall/Data/facewall.db` — every trace, link, judgment, pattern and vector in one SQLite file. The folder can be moved from Settings › Data & engine. |
-| Backups | `…/Data/backups/` — one a day for the last 7 days, the last 5 manual ones, plus one before every upgrade, import and restore. Restore from any of them in Settings. |
-| Model configuration | `…/Data/llm_config.json`, readable by you alone. Keys are never sent back to the interface. |
-| Captures waiting for the engine | `~/Library/Application Support/Facewall/outbox.jsonl` |
-| Logs | `~/Library/Logs/Facewall/app.log` and `engine.log` (Help › Open logs) |
-
-- What reaches the model you configured, and nothing else: the trace being stitched, its few most related past traces, and the judgments of the threads involved; for recall, your question and the recalled traces. OpenAI and Azure requests ask the server not to store them.
-- Web search is off unless you turn it on, and then only a recall you ticked goes online: the model searches with your question, never with trace text. Stitching and the Daily Stitch never go online.
-- Everything else is local: search in the command palette, the embedding model, the layout, the usage counters, update checks (which only ask GitHub for the latest version number).
-- ⇧⌘E exports everything as JSON with the text verbatim; ⌘O imports it. Files Facewall writes are readable by you alone.
-- The quick capture panel, the Services menu and system notifications never show text by default; a notification is withdrawn when its trace is deleted.
-
-## Troubleshooting
-
-- **macOS won't open the app**: see step 2 of [Installation](#installation). The prompt appears only for a manually installed copy; in-app updates don't trigger it.
-- **"No AI configured" at the top right**: click it. If `claude`, `codex` or `gemini` is on this Mac but not found, run it once in Terminal and sign in, or enter its path under Settings › AI model.
-- **"Stitching paused"**: the status says why — quota used up, signed out, network down, or a misconfigured model — and when it retries. ⇧⌘S retries right away; a misconfigured model takes you to settings.
-- **A capture was refused**: the panel (or a notification) says why, usually a text over 20,000 characters, and lets you copy the text back.
-- **The engine won't start or stopped answering**: Help › **Restart engine**, then Help › **Open logs** for `engine.log`. A hung engine restarts by itself; two copies of Facewall never open the same data folder.
-- **An update failed**: Settings › Updates shows the reason. You can always download the latest dmg from [Releases](https://github.com/redbson/facewall-releases/releases/latest) and install it over the old one; your data, settings and backups are kept.
-- **Something looks wrong after an upgrade**: Settings › Data & engine › backups lists the copy made right before it; restoring makes another backup first.
+- [User guide](docs/guide.md) — capturing, stitching, corrections, recall, the Daily Stitch, threads and memory, settings, shortcuts.
+- [Data and privacy](docs/privacy.md) — where your data lives, what reaches the model, what never leaves your Mac.
+- [Troubleshooting](docs/troubleshooting.md) — first launch, model setup, paused stitching, updates, backups.
+- [Changelog](CHANGELOG.en.md) — every version in detail ([中文](CHANGELOG.md)). Checksums of every installer are in [checksums/](checksums/).
+- [Status and roadmap](docs/STATUS.md) (Chinese) — what works, what is known to be rough, what comes next.
 
 ## Changelog
 
@@ -163,15 +79,6 @@ When the Stitch page is idle, a card shows one older thought, thread or open que
 - Gemini CLI as a third local provider (preview).
 - Bundled World 0 cognitive kernel 0.5.1; conflict hints in recall only flag real reversals.
 - The settings button is a gear; the sidebar no longer shows the version number.
-
-### 0.3.2
-- English and Chinese interface and model output, following the device language.
-
-### 0.3.1
-- Your judgments are never overwritten; deleted traces disappear everywhere; recall says how sure it is and abstains honestly; forgetting and waking; in-app restore of backups; corrections (move, split, merge, reject a pattern).
-
-### 0.3.0
-- Heteronto design system, user guide, About panel; automatic model lists; Claude Code / Codex as providers; the Daily Stitch.
 
 See [CHANGELOG.en.md](CHANGELOG.en.md) for every version (Chinese: [CHANGELOG.md](CHANGELOG.md)).
 
