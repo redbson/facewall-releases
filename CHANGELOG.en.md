@@ -2,6 +2,16 @@
 
 Versions follow `major.minor.patch`; `x.y.z-dev.date` is a **Facewall Dev** preview that installs next to the release build (its own bundle id, data folder, port and hotkeys).
 
+## 0.3.5 · 2026-11-03
+
+### Models through OntoRouter
+- **Settings › AI model › OntoRouter**: with ontorouter running on this Mac, Facewall can talk to that one endpoint and let the router pick the model by task and strength (e.g. 语义分析/高) and fail over by itself; your Claude Code, Codex, Qoder and own API accounts sit behind it. When the router is found, one-click enabling is offered and the main and stitch models are set to the router's task names (stitching one strength lower, to save).
+- Through the router, a web recall is searched by the router and the results are handed to the model; only links the model actually used, and that were really found, are kept.
+
+### Capture from your phone (preview)
+- **Settings › Mobile**: captures from a phone reach the Mac through a relay server. Pairing is a QR code whose key never touches the server; the phone side is a web page you add to the home screen and that works offline; every capture is end-to-end encrypted, decrypted on the Mac, put on the wall (source `mobile`, dated when written) and then deleted from the relay. With the Mac off, captures wait on the relay for up to 30 days.
+- Preview: the relay has to be self-hosted and its package is not public yet; it will be published in this repository.
+
 ## 0.3.4 · 2026-10-15
 
 ### Recall can look on the web

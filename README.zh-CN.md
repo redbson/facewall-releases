@@ -6,7 +6,7 @@
 
 Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚出现时就从任何 App 里随手丢进去；后台的 AI 把它和你过去的想法连起来，缝进持续生长的 **思考线**，发现你 **改变了主意**，让反复出现的判断浮现为 **长期模式**，并在你重新思考一个问题时 **召回过去的自己**。它用你本机已登录的 **Claude Code**、**Codex** 或 **Gemini CLI** 缝合，也可以接你配置的任何 API。没有服务器、不用注册账号：你的想法存在 Mac 上的一个数据库里，只有你选定的模型会看到它们。界面有中文和英文，默认跟随 Mac 的系统语言，可在设置里切换。
 
-**⬇ 下载：[macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.4/Facewall-0.3.4.dmg)** · [全部版本](https://github.com/redbson/facewall-releases/releases) · [更新日志](CHANGELOG.md)
+**⬇ 下载：[macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.5/Facewall-0.3.5.dmg)** · [全部版本](https://github.com/redbson/facewall-releases/releases) · [更新日志](CHANGELOG.md)
 
 这个仓库放安装包、更新日志和文档；源码是私有的。
 
@@ -36,7 +36,7 @@ Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚�
 
 ## 安装
 
-1. 下载 [Facewall-0.3.4.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.4/Facewall-0.3.4.dmg)（或在 [Releases](https://github.com/redbson/facewall-releases/releases) 选一个版本），打开后把 `Facewall.app` 拖进「应用程序」。
+1. 下载 [Facewall-0.3.5.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.5/Facewall-0.3.5.dmg)（或在 [Releases](https://github.com/redbson/facewall-releases/releases) 选一个版本），打开后把 `Facewall.app` 拖进「应用程序」。
 2. 首次打开：Facewall 没有经过 Apple 公证，macOS 会说无法验证开发者。打开 系统设置 → 隐私与安全性，拉到底部点 **「仍要打开」**，或者在终端执行：
 
    ```bash
@@ -69,16 +69,14 @@ Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚�
 
 ## 更新日志
 
+### 0.3.5
+- 模型调用可以走本机的 OntoRouter：填任务名，由路由器挑模型并自动切换；联网召回由路由器搜索。
+- 手机记录入口（预览）：经中继服务器送到 Mac，端到端加密。
+
 ### 0.3.4
 - 召回可联网搜索（可选）：模型自己搜索，来源单独列出，和你自己的过去分开。
 - 认知内核参与缝合、遗忘和每日一针（新增张力卡、沉寂概念卡）；World 0 和内置内核都能完成。
 - 本机命令行工具有多个副本时选最新的。
-
-### 0.3.3
-- 应用内更新：在 设置 › 更新 里检查、下载、校验、重启；中英双语的版本日志。
-- Gemini CLI 作为第三个本机提供方（预览）。
-- 内置认知内核 World 0 升级到 0.5.1；召回里的冲突提示只标真正的反转。
-- 设置按钮改为齿轮；侧栏不再显示版本号。
 
 每个版本的详细改动见 [CHANGELOG.md](CHANGELOG.md)（English：[CHANGELOG.en.md](CHANGELOG.en.md)）。
 

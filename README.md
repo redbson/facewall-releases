@@ -6,7 +6,7 @@ English | [简体中文](README.zh-CN.md)
 
 Facewall is a local-first, AI-native **thinking wall for macOS**. Drop a thought the moment it appears, from any app; an AI in the background links it to what you thought before, stitches it into **threads** that keep growing, notices when you **change your mind**, lets judgments that keep recurring surface as **patterns**, and **recalls your past self** when you come back to a question. It stitches through the **Claude Code**, **Codex** or **Gemini CLI** you are already signed in to, or any API you configure. There is no server and no account: your thoughts live in one database on your Mac, and only the model you chose ever sees them. The interface is in English and Chinese; it follows your Mac's language and can be switched in Settings.
 
-**⬇ Download: [macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.4/Facewall-0.3.4.dmg)** · [All releases](https://github.com/redbson/facewall-releases/releases) · [Changelog](CHANGELOG.en.md)
+**⬇ Download: [macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.5/Facewall-0.3.5.dmg)** · [All releases](https://github.com/redbson/facewall-releases/releases) · [Changelog](CHANGELOG.en.md)
 
 This repository holds the installers, the changelog and the documentation; the source code is private.
 
@@ -36,7 +36,7 @@ The bundled embedding model is Chinese-first; recall over English traces works b
 
 ## Installation
 
-1. Download [Facewall-0.3.4.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.4/Facewall-0.3.4.dmg) (or pick a version on [Releases](https://github.com/redbson/facewall-releases/releases)), open it, and drag `Facewall.app` into Applications.
+1. Download [Facewall-0.3.5.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.5/Facewall-0.3.5.dmg) (or pick a version on [Releases](https://github.com/redbson/facewall-releases/releases)), open it, and drag `Facewall.app` into Applications.
 2. First launch: Facewall is not notarized by Apple, so macOS says it cannot verify the developer. Open System Settings → Privacy & Security and click **Open Anyway** near the bottom, or run:
 
    ```bash
@@ -69,16 +69,14 @@ Want a feel for it first? Run **Load example traces** from the ⌘K command pale
 
 ## Changelog
 
+### 0.3.5
+- Models can go through OntoRouter, the local model router: pick a task name, the router chooses and fails over; web recall is searched by the router.
+- Capture from your phone (preview): an end-to-end-encrypted inbox through a relay server.
+
 ### 0.3.4
 - Recall can look on the web (opt-in): the model searches by itself and lists its sources apart from your own past.
 - The cognitive kernel now takes part in stitching, forgetting and the Daily Stitch (tension and dormant-concept cards); World 0 and the built-in kernel both serve it.
 - Several copies of a local CLI: the newest wins.
-
-### 0.3.3
-- In-app updates: check, download, verify and restart from Settings › Updates; a version log in both languages.
-- Gemini CLI as a third local provider (preview).
-- Bundled World 0 cognitive kernel 0.5.1; conflict hints in recall only flag real reversals.
-- The settings button is a gear; the sidebar no longer shows the version number.
 
 See [CHANGELOG.en.md](CHANGELOG.en.md) for every version (Chinese: [CHANGELOG.md](CHANGELOG.md)).
 

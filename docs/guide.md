@@ -34,6 +34,10 @@ Press ⌘F (or `/` when you aren't typing), write what you want to keep thinking
 
 **Looking on the web too** (off by default): turn on Settings › AI model › Web search, and a *Look on the web too* box appears under the question. Ticked, the model searches the internet itself before answering (Claude Code, Codex or the Anthropic API — no search service to set up) and lists what it used under *From the web*, kept apart from your own past: a web result never appears in your path of thought. Only your question is sent to the search, never your traces.
 
+## Capturing from your phone
+
+Facewall has no server, so the phone reaches your Mac through a **relay server** (preview: the relay has to be self-hosted and its package is not public yet). On the Mac open **Settings › Mobile**, enter the relay address and its invite code, click **Pair a phone** and scan the QR code with the phone camera; add the page to the home screen. The phone page is one box: write, tap, done — offline it queues and sends later. Every capture is encrypted on the phone with a key that travels only inside the QR code; the relay stores ciphertext, the Mac decrypts it, puts it on the wall as a `mobile` trace dated when you wrote it, and has the relay delete it. With the Mac off, captures wait on the relay for up to 30 days. **Unpair** revokes the phone; pairing again makes a new key.
+
 ## The Daily Stitch
 
 When the Stitch page is idle, a card shows one older thought, thread or open question with a question. **Write a reply**, **Recall my past self**, **Another one**, or **Not today**. Examples and faded traces never appear in it.
@@ -46,7 +50,7 @@ When the Stitch page is idle, a card shows one older thought, thread or open que
 
 ## Settings (⌘,)
 
-- **AI model**: provider, model, connection test, and the one-click cards for local CLIs. Stitching can use a cheaper model than recall.
+- **AI model**: provider, model, connection test, and the one-click cards for local CLIs and OntoRouter. Through OntoRouter you pick task names (e.g. 语义分析/高) and the router chooses and fails over. Stitching can use a cheaper model than recall.
 - **Appearance & general**: light / dark / follow system with four dark styles; language (English, 简体中文, follow system); launch at login; menu bar and Dock icons; notifications and whether they carry text.
 - **Shortcuts**: the two global hotkeys (quick capture, show / hide Facewall) and a reference of everything else.
 - **Data & engine**: data folder (show, change), export and import, backups and in-app restore, usage counters, the cognitive kernel, logs, restart engine.
