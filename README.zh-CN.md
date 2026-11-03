@@ -4,9 +4,9 @@
 
 [![最新版本](https://img.shields.io/github/v/release/redbson/facewall-releases?label=release)](https://github.com/redbson/facewall-releases/releases/latest) [![平台](https://img.shields.io/badge/platform-macOS%2013%2B%20%C2%B7%20Apple%20silicon-555)](#要求)
 
-Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚出现时就从任何 App 里随手丢进去；后台的 AI 把它和你过去的想法连起来，缝进持续生长的 **思考线**，发现你 **改变了主意**，让反复出现的判断浮现为 **长期模式**，并在你重新思考一个问题时 **召回过去的自己**。它用你本机已登录的 **Claude Code**、**Codex** 或 **Gemini CLI** 缝合，也可以接你配置的任何 API。没有服务器、不用注册账号：你的想法存在 Mac 上的一个数据库里，只有你选定的模型会看到它们。界面有中文和英文，默认跟随 Mac 的系统语言，可在设置里切换。
+Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚出现时就从任何 App 里随手丢进去；后台的 AI 把它和你过去的想法连起来，缝进持续生长的 **思考线**，发现你 **改变了主意**，让反复出现的判断浮现为 **长期模式**，并在你重新思考一个问题时 **召回过去的自己**。它通过本机的模型路由器 **OntoRouter** 调用模型，由路由器在背后的服务（本机命令行工具或 API）中挑选并自动切换。没有服务器、不用注册账号：你的想法存在 Mac 上的一个数据库里，只有路由器发往的模型会看到它们。界面有中文和英文，默认跟随 Mac 的系统语言，可在设置里切换。
 
-**⬇ 下载：[macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.5/Facewall-0.3.5.dmg)** · [全部版本](https://github.com/redbson/facewall-releases/releases) · [更新日志](CHANGELOG.md)
+**⬇ 下载：[macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.6/Facewall-0.3.6.dmg)** · [全部版本](https://github.com/redbson/facewall-releases/releases) · [更新日志](CHANGELOG.md)
 
 这个仓库放安装包、更新日志和文档；源码是私有的。
 
@@ -20,23 +20,21 @@ Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚�
 - **记忆与遗忘**：跨思考线反复出现的判断会成为长期模式，但要有足够证据（至少 3 条线索、跨 2 条思考线、跨 2 天）才转正——不是你的，可以否决。很久没被想起的线索会自己淡去，被打开或连接时立刻回来；也可以主动让一条线索淡去，或把它唤醒。
 - **每日一针**：每天一张卡片——一条旧想法、一条思考线或一个未决问题，配一个提问。可以当场回应、从它发起召回、换一张，或今天跳过。
 - **三个视图**：**思考墙**（线索按思考线分组、语义布局、标出反转）、**思考线**（每条线的判断历史和线索）、**记忆**（模式、概念、已淡去和已隐藏的线索）。
-- **模型由你选**：本机的 Claude Code、Codex 或 Gemini CLI 一键启用，走你已有的订阅、不需要 API key；也支持 Anthropic、OpenAI、Azure OpenAI 和任何 OpenAI 兼容端点（DeepSeek、Kimi、GLM、Qwen、Ollama 有预设）。故障按类别区分（配额、未登录、网络、配置错误），缝合会自己恢复。
+- **模型走 OntoRouter**：所有模型调用都按任务名发给本机的 OntoRouter（召回默认 语义分析/高，缝合默认 语义分析/中，自动选好）。背后用哪些服务——Claude Code、Codex 还是某个 API——在 OntoRouter 里设置，不在 Facewall 里。故障按类别区分（路由器没开、配额、认证、配置错误），缝合会自己恢复。
 - **本地优先**：一个 SQLite 文件、每日备份、应用内恢复、完整的 JSON 导出导入，没有遥测。App 自带 Python 运行时和嵌入模型，除了调用模型，完全离线。
 - **自动更新**：Facewall 会检查 GitHub Releases 上的新版本，校验后安装，见 [自动更新](#自动更新)。
 
 ## 要求
 
 - macOS 13 或更新，Apple silicon。没有 Intel 版本。
-- 一个用来缝合的模型，二选一：
-  - [Claude Code](https://docs.anthropic.com/en/docs/claude-code)（`claude`）、[Codex CLI](https://github.com/openai/codex)（`codex`）或 [Gemini CLI](https://github.com/google-gemini/gemini-cli)（`gemini`，预览）已安装并登录。Facewall 用你的订阅跑它们，不需要 API key。
-  - 或者 Anthropic、OpenAI、Azure OpenAI 的 API key，或任何 OpenAI 兼容端点，包括本机的 Ollama。
+- 本机运行着 OntoRouter（ontorouter 应用，或 `ontorouter serve`；默认地址 `http://127.0.0.1:4141`），并至少启用了一个服务。
 - 别的都不需要：Python 和嵌入模型都在 App 里。
 
 内置嵌入模型以中文为主；英文线索的召回能用，但偏弱。
 
 ## 安装
 
-1. 下载 [Facewall-0.3.5.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.5/Facewall-0.3.5.dmg)（或在 [Releases](https://github.com/redbson/facewall-releases/releases) 选一个版本），打开后把 `Facewall.app` 拖进「应用程序」。
+1. 下载 [Facewall-0.3.6.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.6/Facewall-0.3.6.dmg)（或在 [Releases](https://github.com/redbson/facewall-releases/releases) 选一个版本），打开后把 `Facewall.app` 拖进「应用程序」。
 2. 首次打开：Facewall 没有经过 Apple 公证，macOS 会说无法验证开发者。打开 系统设置 → 隐私与安全性，拉到底部点 **「仍要打开」**，或者在终端执行：
 
    ```bash
@@ -44,7 +42,7 @@ Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚�
    ```
 
 3. 之后的版本由 Facewall 自己下载安装（见 [自动更新](#自动更新)），不会再出现这个提示。
-4. 打开 Facewall，引擎大约 2 秒就绪。按 **⌘,** 连接模型：本机有 Claude Code、Codex 或 Gemini CLI 时，AI 设置顶部有一张「启用」卡片等着；否则选一个服务、填入 key。
+4. 打开 Facewall，引擎大约 2 秒就绪。OntoRouter 在运行时，Facewall 会在默认地址找到它并自动选好任务名；**⌘,** › AI 模型 显示路由器状态，可以测试连接。
 5. 在任何 App 里按 **⌥⇧Space**，写下一个想法，回车。
 
 要让 Facewall 开机自启，在 设置 › 外观与通用 里打开 **登录时启动**，它会常驻菜单栏，随时可以捕捉。
@@ -69,14 +67,12 @@ Facewall 是一个本地优先、AI-native 的 **macOS 思考墙**。想法刚�
 
 ## 更新日志
 
+### 0.3.6
+- 所有模型调用只走 OntoRouter：去掉了 API 和本机命令行工具的配置，旧版本保存的 key 在升级时删除。
+
 ### 0.3.5
 - 模型调用可以走本机的 OntoRouter：填任务名，由路由器挑模型并自动切换；联网召回由路由器搜索。
 - 手机记录入口（预览）：经中继服务器送到 Mac，端到端加密。
-
-### 0.3.4
-- 召回可联网搜索（可选）：模型自己搜索，来源单独列出，和你自己的过去分开。
-- 认知内核参与缝合、遗忘和每日一针（新增张力卡、沉寂概念卡）；World 0 和内置内核都能完成。
-- 本机命令行工具有多个副本时选最新的。
 
 每个版本的详细改动见 [CHANGELOG.md](CHANGELOG.md)（English：[CHANGELOG.en.md](CHANGELOG.en.md)）。
 

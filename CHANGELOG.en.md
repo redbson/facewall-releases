@@ -2,6 +2,15 @@
 
 Versions follow `major.minor.patch`; `x.y.z-dev.date` is a **Facewall Dev** preview that installs next to the release build (its own bundle id, data folder, port and hotkeys).
 
+## 0.3.6 · 2026-11-03
+
+### Every model call goes through OntoRouter
+- Settings › AI model is OntoRouter only: the router's state, address and optional key, one task name for recall and one for stitching (empty means the router's own 「语义分析/高」 and 「语义分析/中」), web search and the output budget. Testing the connection names the backend that answered.
+- The Anthropic, OpenAI and Azure API settings, the direct Claude Code / Codex / Gemini CLI providers and the "enable your local CLI" card are gone: OntoRouter manages all of them — change models or add services in ontorouter.
+- On upgrade, the API keys and provider settings an older version saved are deleted from Facewall's config file; the output budget and the web-search switch are kept. If a key lives only in Facewall, copy it from `~/Library/Application Support/Facewall/Data/llm_config.json` before updating.
+- With the router not running, stitching pauses and says why ("open the ontorouter app, or run `ontorouter serve`") and resumes once it is back. Quitting Facewall releases any call waiting on the router at once.
+- The Anthropic and OpenAI SDKs are no longer bundled.
+
 ## 0.3.5 · 2026-11-03
 
 ### Models through OntoRouter

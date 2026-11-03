@@ -4,9 +4,9 @@ English | [简体中文](README.zh-CN.md)
 
 [![Latest release](https://img.shields.io/github/v/release/redbson/facewall-releases?label=release)](https://github.com/redbson/facewall-releases/releases/latest) [![Platform](https://img.shields.io/badge/platform-macOS%2013%2B%20%C2%B7%20Apple%20silicon-555)](#requirements)
 
-Facewall is a local-first, AI-native **thinking wall for macOS**. Drop a thought the moment it appears, from any app; an AI in the background links it to what you thought before, stitches it into **threads** that keep growing, notices when you **change your mind**, lets judgments that keep recurring surface as **patterns**, and **recalls your past self** when you come back to a question. It stitches through the **Claude Code**, **Codex** or **Gemini CLI** you are already signed in to, or any API you configure. There is no server and no account: your thoughts live in one database on your Mac, and only the model you chose ever sees them. The interface is in English and Chinese; it follows your Mac's language and can be switched in Settings.
+Facewall is a local-first, AI-native **thinking wall for macOS**. Drop a thought the moment it appears, from any app; an AI in the background links it to what you thought before, stitches it into **threads** that keep growing, notices when you **change your mind**, lets judgments that keep recurring surface as **patterns**, and **recalls your past self** when you come back to a question. It calls its model through **OntoRouter**, the model router on your Mac, which picks a model behind it (local CLIs or APIs) and fails over. There is no server and no account: your thoughts live in one database on your Mac, and only the models your router sends them to ever see them. The interface is in English and Chinese; it follows your Mac's language and can be switched in Settings.
 
-**⬇ Download: [macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.5/Facewall-0.3.5.dmg)** · [All releases](https://github.com/redbson/facewall-releases/releases) · [Changelog](CHANGELOG.en.md)
+**⬇ Download: [macOS](https://github.com/redbson/facewall-releases/releases/download/v0.3.6/Facewall-0.3.6.dmg)** · [All releases](https://github.com/redbson/facewall-releases/releases) · [Changelog](CHANGELOG.en.md)
 
 This repository holds the installers, the changelog and the documentation; the source code is private.
 
@@ -20,23 +20,21 @@ This repository holds the installers, the changelog and the documentation; the s
 - **Memory and forgetting**: judgments that recur across threads become long-term patterns, only once there is enough evidence (at least three traces, across two threads and two days) — reject any that aren't you. Traces nothing has recalled for a long time fade on their own and come back the moment they are opened or linked; you can also let a trace fade on purpose, or wake it.
 - **The Daily Stitch**: one card a day — an older thought, a thread or an open question, with a question to answer. Reply in place, recall from it, pick another, or skip today.
 - **Three views**: the **Wall** (traces grouped by thread, semantic layout, reversals marked), **Threads** (each thread's judgment history and traces), and **Memory** (patterns, concepts, faded and hidden traces).
-- **Your model, your choice**: one-click setup with the Claude Code, Codex or Gemini CLI on this Mac, on your existing subscription and with no API key; or Anthropic, OpenAI, Azure OpenAI and any OpenAI-compatible endpoint (presets for DeepSeek, Kimi, GLM, Qwen and Ollama). Failures are told apart (quota, signed out, network, misconfigured) and stitching resumes by itself.
+- **Models through OntoRouter**: every model call goes to the local OntoRouter by task name (e.g. 语义分析/高 for recall, 语义分析/中 for stitching, picked for you). Which services sit behind it — Claude Code, Codex, an API — is set in OntoRouter, not in Facewall. Failures are told apart (router not running, quota, auth, misconfigured) and stitching resumes by itself.
 - **Local by design**: one SQLite file, daily backups, in-app restore, full JSON export and import, no telemetry. The app ships its own Python runtime and embedding model; apart from the model call it is fully offline.
 - **Automatic updates**: Facewall checks GitHub Releases for a new version and installs it after verifying it, see [Automatic updates](#automatic-updates).
 
 ## Requirements
 
 - macOS 13 or later, Apple silicon. There is no Intel build.
-- A model to stitch with — one of:
-  - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`claude`), [Codex CLI](https://github.com/openai/codex) (`codex`) or [Gemini CLI](https://github.com/google-gemini/gemini-cli) (`gemini`, preview), installed and signed in. Facewall runs them on your subscription; no API key is needed.
-  - or an API key for Anthropic, OpenAI, Azure OpenAI, or any OpenAI-compatible endpoint, including a local Ollama.
+- OntoRouter running on this Mac (the ontorouter app, or `ontorouter serve`; default address `http://127.0.0.1:4141`) with at least one service enabled.
 - Nothing else: Python and the embedding model are inside the app.
 
 The bundled embedding model is Chinese-first; recall over English traces works but is weaker.
 
 ## Installation
 
-1. Download [Facewall-0.3.5.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.5/Facewall-0.3.5.dmg) (or pick a version on [Releases](https://github.com/redbson/facewall-releases/releases)), open it, and drag `Facewall.app` into Applications.
+1. Download [Facewall-0.3.6.dmg](https://github.com/redbson/facewall-releases/releases/download/v0.3.6/Facewall-0.3.6.dmg) (or pick a version on [Releases](https://github.com/redbson/facewall-releases/releases)), open it, and drag `Facewall.app` into Applications.
 2. First launch: Facewall is not notarized by Apple, so macOS says it cannot verify the developer. Open System Settings → Privacy & Security and click **Open Anyway** near the bottom, or run:
 
    ```bash
@@ -44,7 +42,7 @@ The bundled embedding model is Chinese-first; recall over English traces works b
    ```
 
 3. Later versions are downloaded and installed by Facewall itself (see [Automatic updates](#automatic-updates)), so you won't see this prompt again.
-4. Open Facewall. The engine is ready in about two seconds. Press **⌘,** to connect a model: with Claude Code, Codex or Gemini CLI on this Mac an **Enable** card is waiting at the top of AI settings; otherwise pick a service and enter a key.
+4. Open Facewall. The engine is ready in about two seconds. With OntoRouter running, Facewall finds it at its default address and picks the task names by itself; **⌘,** › AI model shows the router's state and lets you test the connection.
 5. Press **⌥⇧Space** in any app, write a thought, press Return.
 
 To start Facewall when you log in, turn on **Launch at login** under Settings › Appearance & general. Facewall then lives in the menu bar, ready to capture.
@@ -69,14 +67,12 @@ Want a feel for it first? Run **Load example traces** from the ⌘K command pale
 
 ## Changelog
 
+### 0.3.6
+- Every model call goes through OntoRouter: the API and local-CLI settings are gone, and keys an older version saved are deleted on upgrade.
+
 ### 0.3.5
 - Models can go through OntoRouter, the local model router: pick a task name, the router chooses and fails over; web recall is searched by the router.
 - Capture from your phone (preview): an end-to-end-encrypted inbox through a relay server.
-
-### 0.3.4
-- Recall can look on the web (opt-in): the model searches by itself and lists its sources apart from your own past.
-- The cognitive kernel now takes part in stitching, forgetting and the Daily Stitch (tension and dormant-concept cards); World 0 and the built-in kernel both serve it.
-- Several copies of a local CLI: the newest wins.
 
 See [CHANGELOG.en.md](CHANGELOG.en.md) for every version (Chinese: [CHANGELOG.md](CHANGELOG.md)).
 

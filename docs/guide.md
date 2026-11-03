@@ -32,7 +32,7 @@ Every correction is a signal: whatever the AI infers, you have the final say.
 
 Press ⌘F (or `/` when you aren't typing), write what you want to keep thinking about, press Return. Ask the way you would ask someone who knows you: *What did I go back and forth on about moving to another city?* The result starts with how sure it is, then the most stable judgment right now, how the view changed over time (each step jumps to its trace), open questions, related threads, the recalled words themselves — dated, in your own words — and folded groups for nearest-but-unsure and faded traces. **Keep thinking from here** turns your reply into a new trace.
 
-**Looking on the web too** (off by default): turn on Settings › AI model › Web search, and a *Look on the web too* box appears under the question. Ticked, the model searches the internet itself before answering (Claude Code, Codex or the Anthropic API — no search service to set up) and lists what it used under *From the web*, kept apart from your own past: a web result never appears in your path of thought. Only your question is sent to the search, never your traces.
+**Looking on the web too** (off by default): turn on Settings › AI model › Web search, and a *Look on the web too* box appears under the question. Ticked, OntoRouter searches the internet with your question before the model answers (no search service to set up in Facewall) and lists what it used under *From the web*, kept apart from your own past: a web result never appears in your path of thought. Only your question is sent to the search, never your traces.
 
 ## Capturing from your phone
 
@@ -50,7 +50,7 @@ When the Stitch page is idle, a card shows one older thought, thread or open que
 
 ## Settings (⌘,)
 
-- **AI model**: provider, model, connection test, and the one-click cards for local CLIs and OntoRouter. Through OntoRouter you pick task names (e.g. 语义分析/高) and the router chooses and fails over. Stitching can use a cheaper model than recall.
+- **AI model**: OntoRouter's state and the services behind it, its address and optional key, the task name for recall and for stitching (e.g. 语义分析/高 and 语义分析/中; empty picks them from the router), web search, the output budget and a connection test that names the backend that answered. Which models and services the router uses is set in OntoRouter.
 - **Appearance & general**: light / dark / follow system with four dark styles; language (English, 简体中文, follow system); launch at login; menu bar and Dock icons; notifications and whether they carry text.
 - **Shortcuts**: the two global hotkeys (quick capture, show / hide Facewall) and a reference of everything else.
 - **Data & engine**: data folder (show, change), export and import, backups and in-app restore, usage counters, the cognitive kernel, logs, restart engine.

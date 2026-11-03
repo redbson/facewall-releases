@@ -2,6 +2,15 @@
 
 版本号遵循 `主.次.修订`；`x.y.z-dev.日期` 是可与正式版并存的 **Facewall Dev** 预览版（独立的包标识、数据目录、端口和快捷键）。
 
+## 0.3.6 · 2026-11-03
+
+### 所有模型调用只走 OntoRouter
+- 设置 › AI 模型 只剩 OntoRouter：路由器状态、地址、可选密钥，召回和缝合各用一个任务名（留空时自动取路由器里的「语义分析/高」和「语义分析/中」），联网搜索和最大输出。测试连接会说明这次由哪个后端回答。
+- 去掉了 Anthropic、OpenAI、Azure 的 API 配置和本机 Claude Code / Codex / Gemini CLI 的直连，以及「一键启用本机 CLI」的推荐卡片：这些都由 OntoRouter 统一管理，要换模型或加服务，在 ontorouter 里改。
+- 升级时，旧版本保存的各家 API key 和提供方设置会从 Facewall 的配置文件里删除；最大输出、联网搜索开关保留。如果某个 key 只存在 Facewall 里，升级前先从 `~/Library/Application Support/Facewall/Data/llm_config.json` 里复制出来。
+- 路由器没有运行时，缝合暂停并说明原因（「打开 ontorouter 应用，或运行 ontorouter serve」），路由器回来后自动继续。退出 Facewall 时，正在等路由器回复的调用会立刻放开，不拖慢退出。
+- 安装包里不再带 Anthropic 和 OpenAI 的 SDK。
+
 ## 0.3.5 · 2026-11-03
 
 ### 通过 OntoRouter 调用模型
