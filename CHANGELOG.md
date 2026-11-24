@@ -2,6 +2,19 @@
 
 版本号遵循 `主.次.修订`；`x.y.z-dev.日期` 是可与正式版并存的 **Facewall Dev** 预览版（独立的包标识、数据目录、端口和快捷键）。
 
+## 0.3.8 · 2026-11-24
+
+### 自选 AI 服务商
+
+- 「设置 › AI 模型」提供 OntoRouter、OpenAI、DeepSeek、Anthropic、Google Gemini、Azure OpenAI 和自定义 OpenAI 兼容端点。OntoRouter 仍是默认选项，已保存的设置会随升级保留。
+- 各服务独立保存 API 密钥、主模型和可选的缝合模型。可以拉取可用模型列表，也可以手填模型 ID。Azure OpenAI 使用部署名称。
+- 「测试连接」用简短的示例请求验证所选模型，「保存」使配置对后续调用生效。召回可通过 OntoRouter 使用联网搜索。
+
+### 本地代理召回线索
+
+- 在「设置 › MCP」可以连接已检测到的 Codex、Claude Code、Qoder CLI 和 Gemini CLI。代理可通过只读连接检索或浏览线索，并引用原文、日期和 Facewall 链接。
+- 同一页可安装随包提供的召回 Skill。MCP 连接和 Skill 可以分别管理。
+
 ## 0.3.6 · 2026-11-03
 
 ### 所有模型调用只走 OntoRouter

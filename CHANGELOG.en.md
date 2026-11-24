@@ -2,6 +2,19 @@
 
 Versions follow `major.minor.patch`; `x.y.z-dev.date` is a **Facewall Dev** preview that installs next to the release build (its own bundle id, data folder, port and hotkeys).
 
+## 0.3.8 · 2026-11-24
+
+### Choose how Facewall calls AI models
+
+- Settings › AI model offers OntoRouter, OpenAI, DeepSeek, Anthropic, Google Gemini, Azure OpenAI and a custom OpenAI-compatible endpoint. OntoRouter stays the default, and its saved settings carry forward.
+- Each provider keeps its own API key, main model and optional stitch model. Fetch the available model list or enter a model ID. For Azure OpenAI, use the deployment name.
+- **Test connection** checks the selected models with a short sample request. **Save** applies the profile to subsequent calls. Recall can use web search through OntoRouter.
+
+### Recall notes from a local agent
+
+- Settings › MCP can connect detected Codex, Claude Code, Qoder CLI and Gemini CLI clients. The read-only connection lets an agent search or browse notes and cite their originals with dates and Facewall links.
+- Install the bundled recall skill through the same settings page. The MCP connection and skill can be managed independently.
+
 ## 0.3.6 · 2026-11-03
 
 ### Every model call goes through OntoRouter
